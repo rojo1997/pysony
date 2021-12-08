@@ -10,6 +10,8 @@ from pysony.feature_extraction import (
 
 class PipelineUnion(BaseEstimator, TransformerMixin):
     def __init__(self, appid: str, mode: int = 1):
+        self.appid = appid
+        self.mode = mode
         self.pipeline = FeatureUnion(
             transformer_list = [
                 ("ReverseGeocoderPipeline", Pipeline(
