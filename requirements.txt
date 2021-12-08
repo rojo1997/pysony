@@ -1,0 +1,4 @@
+scikit-learn==1.0
+reverse_geocoder==1.5.1
+python-decouple==3.5
+geopy==2.2.0
