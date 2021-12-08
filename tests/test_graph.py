@@ -13,6 +13,8 @@ class TestGraphDistance(unittest.TestCase):
         X[:,0] += -0.1729636
         X[:,1] += 51.5214588
         node,edge = myGraphDistance.compute(X)
+        print(node)
+        print(edge)
         print(len(node))
         print(len(edge))
 
