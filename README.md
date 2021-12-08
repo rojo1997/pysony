@@ -30,6 +30,8 @@ from pysony.feature_extraction import (
     OpenWeatherMap
 )
 
+from pysony.graph import GraphDistance
+
 X = np.random.rand(10,2) / 2
 X[:,0] += -0.1729636 # lon
 X[:,1] += 51.5214588 # lat
@@ -41,6 +43,7 @@ myOpenWeatherMap = OpenWeatherMap(
 
 Y = myReverseGeocoder.transform(X)
 df = pd.DataFrame(Y, columns = ReverseGeocoder.columns)
+print(df)
 """
               name   admin1          admin2
 0         East Ham  England  Greater London
@@ -58,6 +61,7 @@ df = pd.DataFrame(Y, columns = ReverseGeocoder.columns)
 
 Y = myOpenWeatherMap.transform(X)
 df = pd.DataFrame(Y, columns = OpenWeatherMap.columns)
+print(df)
 """
      temp  feels_like  temp_min  ...  humidity  wind_deg  wind_speed
 0  278.63      276.85    277.91  ...      83.0     190.0        2.24
@@ -70,5 +74,19 @@ df = pd.DataFrame(Y, columns = OpenWeatherMap.columns)
 7  279.15      277.09    278.16  ...      75.0     221.0        2.68
 8  278.93      276.50    278.01  ...      75.0     212.0        3.13
 9  279.10      276.71    278.14  ...      75.0     212.0        3.13
+"""
+
+myGraphDistance = GraphDistance(
+    threshold = 20
+)
+
+node, edge = myGraphDistance.compute(X)
+print(node)
+"""
+[{'_key': '4630749269486329968', 'lon': 0.1006591339173672, 'lat': 51.68475507121363}, {'_key': '-5026963679244352995', 'lon': 0.012806647114927683,...]
+"""
+print(edge)
+"""
+[{'_from': 'node/4630749269486329968', '_to': 'node/-5026963679244352995', 'distance': 14.685114751012092}, {'_from': 'node/4630749269486329968', '_to': 'node/-6188015243388749057', 'distance': 14.304432606569964},...]
 """
 ```
