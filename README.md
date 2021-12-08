@@ -114,3 +114,11 @@ print(edge)
 ]
 """
 ```
+
+## Docker
+
+```bash
+docker build --pull --rm -t pysony:latest "."
+docker tag pysony:latest rojo1997/pysony:latest
+docker push rojo1997/pysony:latest
+```
